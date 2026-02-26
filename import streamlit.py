@@ -40,9 +40,11 @@ def ler_arquivo_conteudo(conteudo_texto):
     for linha in linhas:
         partes = linha.strip().split('|')
         if len(partes) < 2: continue
-        tipo = partes[0]
         
-        if tipo == 'Dirf': dados_globais['ano_calendario'] = partes[2]
+        # AQUI ESTÁ A CORREÇÃO: Transformamos a tag em maiúscula para evitar falhas de leitura
+        tipo = partes[0].strip().upper() 
+        
+        if tipo == 'DIRF': dados_globais['ano_calendario'] = partes[2]
         elif tipo == 'RESPO': dados_globais['nome_resp'] = partes[2]
         elif tipo == 'DECPJ':
             dados_globais['cnpj_fonte'] = partes[1]
